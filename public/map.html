@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>PokéTrack</title>
+	<!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+	<script
+		src="https://code.jquery.com/jquery-3.1.0.min.js"
+		integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s="
+		crossorigin="anonymous"
+	></script>
+
+	<link rel="stylesheet" type="text/css" href="index.css">
+
+	<script>
+
+	function showAllPokemon() {
+		$.get('/location', function(data){
+				$('#output').html('');
+				data = JSON.parse(data);
+				for (var i=0;i<data.length;i++) {
+					$('#output').append('<p>' + data[i].pokemonId + ' at ' + data[i].locStr + '</p>');
+				}
+			}
+		);
+	}
+
+	function sendPokemon() {
+		$.post(
+			'/location',
+			{
+				locStr: $('#locStr').val(),
+				pokemonId: $('#pokemonId').val()
+			},
+			function(data){
+				if (data == "success") {
+					showAllPokemon();
+				}
+			}
+		);
+	}
+
+	function getFilter() {
+		$.get('/location/filter',
+			{
+				filterStr: $('#filter').val()
+			},
+			function(data){
+				$('#output').html('');
+				data = JSON.parse(data);
+				for (var i=0;i<data.length;i++) {
+					$('#output').append('<p>' + data[i].pokemonId + ' at ' + data[i].locStr + '</p>');
+				}
+			}
+		);
+	}
+
+	$(document).ready(function() {
+		showAllPokemon();
+		$('#submit').click(sendPokemon);
+		$('#submitFilter').click(getFilter);
+		$('#submitAll').click(showAllPokemon);
+	});
+
+
+	</script>
+	<style>
+		#output {
+			background-image: url("/images/background.jpg");
+			color: #EEEEEE;
+			overflow: 
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<h3>Register a Location</h3>
+		<label>Where is it?</label><input type="text" id="locStr">
+		<label>What kind?</label><input type="text" id="pokemonId">
+		<input type="button" id="submit" value="Send Loc">
+		<br>
+		<h3>Find pokemon near you</h3>
+		<label>Search where?</lable><input type='text' id='filter'>
+		<input type='button' id='submitFilter' value="Find Nearby">
+		<input type='button' id='submitAll' value="Show All">
+		<br>
+		<br>
+		<div id="output" class="container"></div>
+		<br>
+		<div class="container">
+			<a href='logout'><button>Logout</button></a>
+		</div>
+	</div>
+</body>
+</html>

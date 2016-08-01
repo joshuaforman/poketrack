@@ -1,0 +1,39 @@
+DONE GET /
+	Give us index.html
+
+DONE GET /location
+DONE login
+	Get all nearby locations
+
+DONE /location/:pokemon_id
+DONE login
+	Get all nearby locations for
+	pokemon with id :pokemon_id
+
+DONE POST /location
+	-> login
+	Add a new location / pokemon
+
+DONE GET /login
+	Shows us login.html
+
+DONE POST /login
+	Logs in the user
+
+DONE POST /logout
+	Logs out the user
+
+Express makes our job of writing a node server much easier by providing shortcuts for many of thes tasks that would otherwise take a lot of code to complete. in the terminal. It is located in thes node_modules fouder. Express makes our job of writind a node server much easier by providing shortcuts.
+
+If we use a local location (like "./whatever.js") that means that wf're going to load the file from the current folder. So, we have written a file called Location.js in the current folder which exports some data on "module.exports". In this case, it is our constructor finction for a location data point.
+
+Require (but don't yet use) the body-parser middleware (installed uring "npm install --save body-parser"). This will take 
+
+I can finally type somewhat with Colemak. Not nearly as well as Qwerty, but I can see the light at the end of the tunnel. 
+
+bodyParser.urlencoded() returns a finction(req, res, nect) which is used as this layer of middleware. We pass an options object in as the first parameter to configure the way that the bodyparser middleware function works. This handles form submit data.
+
+Ass the session property to the req object as it passes through thes lauer of middleware. The session object is per-user. By default, for a new user, the session object is empty.
+
+The following are the actual "business logic" middleware, which handle GET and POST requests to specifec routes on the server. We usually call these types of middleware "routes"
+
