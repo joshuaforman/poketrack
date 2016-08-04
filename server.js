@@ -47,8 +47,8 @@ app.get('/login', function(req, res){
 });
 
 app.post('/login', function(req, res){
-	if (req.body.username === "e" &&
-		req.body.password === "p"
+	if (req.body.username === "a" &&
+		req.body.password === "a"
 	) {
 		req.session.user = "erty";
 		res.send("success");
